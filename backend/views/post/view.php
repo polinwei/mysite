@@ -32,10 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'content:ntext',
             'tags:ntext',
-            'status',
+            //'status',
+            ['label'=>'狀態',
+            		'value'=>$model->status0->name,
+            ],
             'create_time:datetime',
             'update_time:datetime',
-            'author_id',
+            //'author_id',
+            ['attribute' => 'author_id',
+             'value' => $model->author->nickname,
+    		]
         ],
     ]) ?>
 
