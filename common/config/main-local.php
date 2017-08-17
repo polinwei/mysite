@@ -17,4 +17,5 @@ return [
             'useFileTransport' => true,
         ],
     ],
+	'timeZone' => 'Asia/Taipei',
 ];

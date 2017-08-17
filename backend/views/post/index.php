@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\Adminuser;
+use common\models\Poststatus;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Posts';
+$this->title = '文章管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
@@ -16,23 +18,38 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增文章', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            //['class' => 'yii\grid\SerialColumn'],
+            //'id',
+            ['attribute' => 'id',
+             'contentOptions' => ['width','30px'],
+            ],
             'title',
-            'content:ntext',
+        	['attribute' => 'author_id',
+        	 'value' => 'author.nickname',
+    		],
+            //'author_id',
+            //'content:ntext',
             'tags:ntext',
-            'status',
+        	['attribute' =>'status',
+        	 'value' => 'status0.name',
+        	 'filter' => Poststatus::find()
+        				 ->select(['name','id'])
+        				 ->indexBy('id')
+        				 ->orderBy('position')
+        				 ->column(),
+    		],
+        	['attribute' => 'update_time',
+        	 'format' => ['datetime', 'php:Y-m-d H:i:s'],
+        	],
+            //'status',
             // 'create_time:datetime',
-            // 'update_time:datetime',
-            // 'author_id',
-
+            //'update_time:datetime',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
