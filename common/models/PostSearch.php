@@ -16,6 +16,12 @@ class PostSearch extends Post
 	{
 		return array_merge(parent::attributes(),['authorName']);
 	}
+	public function attributeLabels()
+	{
+		return array_merge(	parent::attributeLabels(),['authorName'=>'作者']) ;
+		
+	}
+	
     /**
      * @inheritdoc
      */
@@ -55,7 +61,8 @@ class PostSearch extends Post
         	'pagination' => [
         			'pageSize' => 5,
         	],
-        	'sort' => ['defaultOrder'=>['update_time'=> SORT_DESC]
+        	'sort' => [
+        			'defaultOrder'=>['update_time'=> SORT_DESC],        			
         	],
         ]);
 //         echo '<pre>';
