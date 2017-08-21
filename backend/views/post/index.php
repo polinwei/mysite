@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('新增文章', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -27,10 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\SerialColumn'],
             //'id',
             ['attribute' => 'id',
-             'contentOptions' => ['width','30px'],
+             'contentOptions' => ['width'=>'10px'],             
             ],
             'title',
-        	['attribute' => 'author_id',
+        	['attribute' => 'authorName',
+        	 'label' => '作者',
         	 'value' => 'author.nickname',
     		],
             //'author_id',
