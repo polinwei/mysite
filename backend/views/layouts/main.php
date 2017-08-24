@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use common\models\Comment;
 
 AppAsset::register($this);
 ?>
@@ -39,6 +40,7 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
     	['label' => '文章管理', 'url' => ['/post/index']],
     	['label' => '評論管理', 'url' => ['/comment/index']],
+    	'<li><span class="badge badge-info">'.Comment::getPendingCommentCount().'</span></li>',    		
     	['label' => '用戶管理', 'url' => ['/user/index']],
     	['label' => '管理員', 'url' => ['/adminuser/index']],
     ];
