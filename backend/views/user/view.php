@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<!-- 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -24,19 +24,30 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+ -->
+ 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+        	'openid', 
+//             'auth_key',
+//             'password_hash',
+//             'password_reset_token',
             'email:email',
-            'status',
-            'created_at',
-            'updated_at',
+        		[
+        				'attribute' => 'status',
+        				'value' => $model->getStatusStr(),
+        		],
+        		[
+        				'attribute' => 'created_at',
+        				'format' =>['date','php: Y-m-d H:i:s'],
+        		],
+        		[
+        				'attribute' => 'updated_at',
+        				'format' =>['date','php: Y-m-d H:i:s'],
+        		],
         ],
     ]) ?>
 

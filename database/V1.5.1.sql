@@ -461,6 +461,9 @@ ALTER TABLE `post`
 ADD CONSTRAINT `FK_post_author` FOREIGN KEY (`author_id`) REFERENCES `adminuser` (`id`) ON DELETE CASCADE,
 ADD CONSTRAINT `FK_post_status` FOREIGN KEY (`status`) REFERENCES `poststatus` (`id`) ON DELETE CASCADE;
 
+-- 加入 wechat openid
+ALTER TABLE `user` ADD `openid` VARCHAR(255) NULL AFTER `username`;
+
 -- turn on foreign key constraint 
 SET FOREIGN_KEY_CHECKS=1;
 

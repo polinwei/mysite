@@ -25,7 +25,6 @@ use yii\web\IdentityInterface;
  */
 class Adminuser extends ActiveRecord implements IdentityInterface
 {
-	
     /**
      * @inheritdoc
      */

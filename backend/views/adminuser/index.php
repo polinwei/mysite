@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\AdminuserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Adminusers';
+$this->title = '管理員管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="adminuser-index">
@@ -16,25 +16,55 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Adminuser', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增管理員', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            ['attribute'=>'id',
+             'contentOptions'=>['width'=>'30'],
+            ],
             'username',
             'nickname',
-            'password',
+            //'password',
             'email:email',
             // 'profile:ntext',
             // 'auth_key',
             // 'password_hash',
             // 'password_reset_token',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update} {delete} {resetpwd} {privilege}',
+            'buttons'=>
+            [
+            	'resetpwd'=>function($url,$model,$key)
+            	{
+            		$options=
+            		[
+            		'title'=>Yii::t('yii', '重設密碼'),
+            		'aria-label'=>Yii::t('yii','重設密碼'),
+            		'data-pjax'=>'0',
+            		];
+            		return Html::a('<span class="glyphicon glyphicon-lock"></span>',$url,$options);
+            					
+            	},
+            	'privilege'=>function($url,$model,$key)
+            	{
+            		$options=
+            		[
+            				'title'=>Yii::t('yii', '授權'),
+            				'aria-label'=>Yii::t('yii','授權'),
+            				'data-pjax'=>'0',
+            		];
+            		return Html::a('<span class="glyphicon glyphicon-user"></span>',$url,$options);
+            	},
+            ],
+    		],
         ],
     ]); ?>
 </div>

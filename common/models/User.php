@@ -12,6 +12,7 @@ use yii\web\IdentityInterface;
  *
  * @property integer $id
  * @property string $username
+ * @property string $openid 
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
@@ -20,6 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property Comment[] $comments
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -49,6 +51,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
     	return [
     		'username' => '帳號',
+    		'id' => 'ID',
+    		'username' => '用戶名',
+    		'openid' => 'Openid',
+    		'auth_key' => 'Auth Key',
+    		'password_hash' => 'Password Hash',
+    		'password_reset_token' => 'Password Reset Token',
+    		'email' => 'Email',
+    		'status' => '狀態',
+    		'created_at' => '建立時間',
+    		'updated_at' => '修改時間',
     	];
     }
 
@@ -60,6 +72,11 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+        	[['username', 'email'], 'required'],
+        	[['username', 'email'], 'string', 'max' => 255],
+        	[['username'], 'unique'],
+        	[['email'], 'unique'],
+        	[['email'], 'email'],
         ];
     }
 
@@ -193,4 +210,20 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
+    public function getComments()
+    {
+    	return $this->hasMany(Comment::className(), ['userid' => 'id']);
+    }
+    
+    public static function allStatus()
+    {
+    	return [ self::STATUS_ACTIVE=>'正常',self::STATUS_DELETED=>'已刪除'];
+    }
+    
+    public function getStatusStr()
+    {
+    	return $this->status== self::STATUS_ACTIVE ? '正常' : '已刪除';
+    }
+    
 }
