@@ -5,6 +5,7 @@ use yii\widgets\ListView;
 use frontend\components\TagsCloudWidget;
 use yii\base\Widget;
 use frontend\components\RctReplyWidget;
+use common\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\PostSearch */
@@ -37,7 +38,18 @@ use frontend\components\RctReplyWidget;
 			<div class="searchbox">
 				<ul class="list-group">
 				  <li class="list-group-item">
-				  	<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查找文章
+				  	<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查找文章(
+				  	<?php 
+				  		$postsCount = Yii::$app->cache->get("postsCount");
+				  		
+				  		if(!$postsCount){
+				  			$postsCount = Post::find()->count(); sleep(5);
+				  			Yii::$app->cache->set("postsCount", $postsCount,60); // 60秒 後失效
+				  		}	
+				  		
+				  		echo $postsCount;
+				  	?>
+				  	)
 				  </li>
 				  <li class="list-group-item">				  
 					<form class="form-inline" action="<?= Yii::$app->urlManager->createUrl(['post/index']);?>" id="w0" method="get">
