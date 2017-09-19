@@ -15,9 +15,9 @@ use common\models\Adminuser;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>   
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+	<?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className()) ?>
 
     <?= $form->field($model, 'tags')->textarea(['rows' => 6]) ?>
 

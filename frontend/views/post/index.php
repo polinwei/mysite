@@ -16,9 +16,9 @@ use common\models\Post;
 ?>
 <div class="container">
 	<div class="col-md-9">
-		<ol class="breadcrumb">
-			<li><a href="<?= Yii::$app->homeUrl;?>">首页</a></li>
-			<li>文章列表</li>		
+		<ol class="breadcrumb">		    
+			<li><a href="<?= Yii::$app->homeUrl;?>"><?=Yii::t('yii','Home');?></a></li>
+			<li><?=Yii::t('blog','ArticleLists');?></li>		
 		</ol>	
 		<?= ListView::widget([
 				'id'=>'postList',
