@@ -7,7 +7,14 @@ return [
 			'class' => 'yii\redactor\RedactorModule',
 			'uploadDir' => '../../frontend/web/uploads',
 			'uploadUrl' => 'http://im.globeunion.com/uploads',
-			'imageAllowExtensions'=>['jpg','png','gif']
+			'imageAllowExtensions'=>['jpg','png','gif'],
+			'widgetClientOptions' => [
+				'imageManagerJson' => ['/redactor/upload/image-json'],
+				'imageUpload' => ['/redactor/upload/image'],
+				'fileUpload' => ['/redactor/upload/file'],
+				'lang' => 'zh_tw',
+				'plugins' => ['clips', 'fontcolor','imagemanager','filemanager']
+			] 
 		],
 	],
 	'language'=> 'zh-TW',
