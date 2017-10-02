@@ -17,7 +17,58 @@ use common\models\Adminuser;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>   
 
-	<?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className()) ?>
+	<!-- 
+	/**
+	 * 使用 Redactor 的寫法如下
+	 *  $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className())
+	 */		
+	 -->
+	
+	
+<?= $form->field($model, 'content')->widget(\dominus77\tinymce\TinyMce::className(), [    
+    'options' => [
+        'rows' => 25
+    ],
+	'language' => 'zh_TW',
+	'clientOptions' => 
+	[
+			'menubar'=> false,
+		'theme' => 'modern',
+		'plugins' => [
+						"sh4tinymce advlist autolink lists link image charmap print preview hr anchor pagebreak",
+						"searchreplace wordcount visualblocks visualchars code fullscreen",
+						"insertdatetime media nonbreaking save table contextmenu directionality",
+						"emoticons template paste textcolor colorpicker textpattern imagetools codesample toc fontawesome noneditable",
+					],
+		'noneditable_noneditable_class' => 'fa',
+		'extended_valid_elements' => 'span[class|style]',
+		'toolbar1' => "undo redo | sh4tinymce | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+		'toolbar2' => "print preview media | forecolor backcolor emoticons fontawesome | codesample | addmore",					
+		'image_advtab' => true,
+		'templates' => 
+		[
+			[
+			'title' => 'Test template 1',
+			'content' => 'Test 1',
+			],
+			[
+			'title' => 'Test template 2',
+			'content' => 'Test 2',
+			]
+		],
+		
+		//'codesample_content_css' => '/css/prism.css',
+	],
+	'fileManager' => 
+	[
+	'class' => \dominus77\tinymce\components\MihaildevElFinder::className(),
+	'controller' => 'elfinder',
+	'title' => 'My File Manager',
+	'width' => 900,
+	'height' => 400,
+	'resizable' => 'yes',
+	],
+]);?>
 
     <?= $form->field($model, 'tags')->textarea(['rows' => 6]) ?>
 
