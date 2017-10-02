@@ -9,6 +9,9 @@ use yii\helpers\HtmlPurifier;
 use common\models\Comment;
 use yii\helpers\Url;
 
+use common\assets\SyntaxHighlighterAsset;
+SyntaxHighlighterAsset::register($this);
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */

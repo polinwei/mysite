@@ -2,10 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
+
+use common\assets\SyntaxHighlighterAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Post */
+
+SyntaxHighlighterAsset::register($this);
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => '文章管理', 'url' => ['index']];
