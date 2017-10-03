@@ -45,6 +45,7 @@ class ComposerStaticInit5566792722bd1b9ede66d78fe35f2d64
         ),
         'W' => 
         array (
+            'Wechat\\' => 7,
             'Webmozart\\Assert\\' => 17,
         ),
         'S' => 
@@ -139,6 +140,10 @@ class ComposerStaticInit5566792722bd1b9ede66d78fe35f2d64
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'Wechat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zoujingli/wechat-php-sdk/Wechat',
         ),
         'Webmozart\\Assert\\' => 
         array (

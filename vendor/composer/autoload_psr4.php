@@ -19,6 +19,7 @@ return array(
     'mihaildev\\elfinder\\' => array($vendorDir . '/mihaildev/yii2-elfinder'),
     'dominus77\\tinymce\\' => array($vendorDir . '/dominus77/yii2-tinymce-widget'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'Wechat\\' => array($vendorDir . '/zoujingli/wechat-php-sdk/Wechat'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
